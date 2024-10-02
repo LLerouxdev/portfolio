@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Section de présentation -->
+  <section class="bg-gray-800 text-white py-20">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold">Bienvenue dans mon Portfolio</h1>
+      <p class="mt-4 text-lg">Je suis un développeur passionné, spécialisé dans la création d'applications web modernes et
+        réactives.</p>
+      <a href="#projects" class="mt-8 inline-block bg-blue-500 text-white py-3 px-6 rounded-full hover:bg-blue-600">Voir
+        mes projets</a>
+    </div>
+  </section>
+
+  <!-- Section Projets -->
+  <section id="projects" class="py-20">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center">Mes Projets</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+        <!-- Carte de projet -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img src="https://via.placeholder.com/400" alt="Projet 1" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold">Projet 1</h3>
+            <p class="mt-2 text-gray-600">Description du projet 1. Une application web innovante utilisant React et
+              Node.js.</p>
+            <a href="#" class="mt-4 inline-block text-blue-500 hover:underline">Voir plus</a>
+          </div>
+        </div>
+
+        <!-- Autres cartes de projet -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img src="https://via.placeholder.com/400" alt="Projet 2" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold">Projet 2</h3>
+            <p class="mt-2 text-gray-600">Description du projet 2. Un site e-commerce responsive avec Shopify.</p>
+            <a href="#" class="mt-4 inline-block text-blue-500 hover:underline">Voir plus</a>
+          </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img src="https://via.placeholder.com/400" alt="Projet 3" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold">Projet 3</h3>
+            <p class="mt-2 text-gray-600">Description du projet 3. Un blog personnel développé avec WordPress.</p>
+            <a href="#" class="mt-4 inline-block text-blue-500 hover:underline">Voir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Contact -->
+  <section id="contact" class="bg-gray-800 text-white py-20">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold">Contactez-moi</h2>
+      <p class="mt-4 text-lg">Vous avez un projet ou une question ? N'hésitez pas à me contacter !</p>
+      <form class="mt-10 max-w-xl mx-auto">
+        <div class="mb-4">
+          <input type="text" placeholder="Votre nom" class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <input type="email" placeholder="Votre email" class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <textarea placeholder="Votre message" class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+        <button type="submit" class="bg-blue-500 py-3 px-6 rounded-full hover:bg-blue-600">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-6 text-center">
+    <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+  </footer>
+
+</body>
+
+</html>
