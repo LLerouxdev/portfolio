@@ -7,16 +7,124 @@
   <title>Portfolio Louis Le Roux</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Animation Scroll */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* General Style */
+    body {
+      background-color: #1e1e2f;
+      font-family: 'Poppins', sans-serif;
+      color: #f5f5f5;
+      overflow-x: hidden;
     }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* Custom animations */
+    @keyframes smoothFade {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes colorChange {
+      0% {
+        color: #ff00ff;
+      }
+      50% {
+        color: #00ffff;
+      }
+      100% {
+        color: #ff00ff;
+      }
+    }
+
+    @keyframes smoothHover {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Binary animation */
+    .binary-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+      overflow: hidden;
+    }
+
+    .binary-text {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      right: 0;
+      white-space: nowrap;
+      font-family: monospace;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.1);
+      opacity: 0.2;
+      animation: binaryRain 6s linear infinite;
+    }
+
+    @keyframes binaryRain {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+
+    /* Header Section */
+    #home h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      animation: colorChange 5s infinite alternate;
+    }
+
+    #home h1 span {
+      display: inline-block;
+      animation: smoothHover 4s ease-in-out infinite;
+    }
+
+    #home p {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #00e0e0;
+    }
+
+    #home a {
+      font-size: 1.2rem;
+      margin-top: 30px;
+      background-color: #ff00ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #home a:hover {
+      background-color: #00ffff;
+      transform: scale(1.05);
+    }
+
+    /* Project cards */
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #2e2e48;
+      border-radius: 10px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 20px 30px rgba(0, 255, 255, 0.2);
     }
 
     /* Smooth scrolling for anchor links */
@@ -24,104 +132,84 @@
       scroll-behavior: smooth;
     }
 
-    /* Background Binary Animation */
-    .binary-bg {
-      position: relative;
-      background: #0d0d0d;
-      color: #00ff00;
-      overflow: hidden;
-      height: 300px;
+    /* Contact form */
+    .contact-input {
+      background-color: #343454;
+      color: #ffffff;
+      border: 1px solid #7e57c2;
     }
 
-    .binary-bg::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-          rgba(0, 0, 0, 0.8),
-          rgba(0, 0, 0, 0.8) 1px,
-          transparent 1px,
-          transparent 3px
-        );
-      z-index: 1;
+    .contact-input:focus {
+      border-color: #7e57c2;
+      box-shadow: 0px 0px 10px #7e57c2;
     }
 
-    .binary-bg::after {
-      content: '01100100 01100101 01110110 01100101 01101100 01101111 01110000 01100101 01110101 01110010 01101001 01101110 01100111 00101101 01101000 01100001 01100011 01101011 01100101 01110010';
-      font-family: monospace;
-      font-size: 100px;
-      opacity: 0.1;
-      white-space: nowrap;
-      position: absolute;
-      top: -200px;
-      left: 0;
-      animation: binaryRain 8s linear infinite;
-      z-index: 0;
+    button {
+      background-color: #7e57c2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
-    @keyframes binaryRain {
-      0% {
-        top: -200px;
-      }
-      100% {
-        top: 100%;
-      }
+    button:hover {
+      background-color: #9575cd;
+      transform: scale(1.05);
     }
   </style>
 </head>
 
-<body class="bg-black text-lime-400">
+<body>
+  <!-- Binary Animation Background -->
+  <div class="binary-bg">
+    <div class="binary-text">1010101010010101010101010101010101001101010</div>
+    <div class="binary-text">0011010101011010101011010101010110101001010</div>
+    <div class="binary-text">1101010101010101001010101010101101010101010</div>
+  </div>
 
-  <!-- Section de présentation avec animation en binaire -->
-  <section class="binary-bg text-lime-400 py-20" id="home">
-    <div class="container mx-auto text-center relative z-10">
-      <h1 class="text-5xl font-bold transition-transform duration-700 transform hover:scale-110">Louis Le Roux</h1>
-      <p class="mt-4 text-2xl">Étudiant à CESI Rouen - CPI A2 Informatique</p>
-      <p class="mt-6 text-lg opacity-80 hover:opacity-100 transition-opacity duration-300">Développeur passionné par
-        l'informatique et la programmation. Spécialisé dans la création d'applications web et logiciels modernes.</p>
-      <a href="#projects"
-        class="mt-8 inline-block bg-lime-700 text-black py-3 px-8 rounded-full hover:bg-lime-600 transition-transform transform hover:scale-105">Voir
-        mes projets</a>
-    </div>
+  <!-- Section de présentation avec animation sur le nom -->
+  <section class="text-center py-20 relative z-10" id="home">
+    <h1>
+      <span>L</span><span>o</span><span>u</span><span>i</span><span>s</span>
+      <br>
+      <span>L</span><span>e</span> <span>R</span><span>o</span><span>u</span><span>x</span>
+    </h1>
+    <p class="mt-4">Étudiant à CESI Rouen - CPI A2 Informatique</p>
+    <p class="mt-6">Développeur passionné par l'informatique et la programmation, spécialisé dans la création d'applications modernes.</p>
+    <a href="#projects">Voir mes projets</a>
   </section>
 
   <!-- Section Projets -->
   <section id="projects" class="py-20">
     <div class="container mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-10 fade-in text-lime-400">Mes Projets</h2>
+      <h2 class="text-3xl font-bold text-center mb-10 text-pink-500">Mes Projets</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         <!-- Carte de projet -->
-        <div
-          class="bg-gray-900 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-500 fade-in text-lime-400">
+        <div class="project-card shadow-lg overflow-hidden">
           <img src="https://via.placeholder.com/400" alt="Projet 1" class="w-full h-48 object-cover">
           <div class="p-6">
-            <h3 class="text-2xl font-bold">Projet 1</h3>
-            <p class="mt-2 text-lime-200">Application web moderne développée avec React et Node.js.</p>
-            <a href="#" class="mt-4 inline-block text-lime-500 hover:underline">Voir plus</a>
+            <h3 class="text-2xl font-bold text-purple-400">Projet 1</h3>
+            <p class="mt-2 text-cyan-400">Application web moderne développée avec React et Node.js.</p>
+            <a href="#" class="mt-4 inline-block text-purple-400 hover:underline">Voir plus</a>
           </div>
         </div>
 
         <!-- Autres cartes de projet -->
-        <div
-          class="bg-gray-900 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-500 fade-in text-lime-400">
+        <div class="project-card shadow-lg overflow-hidden">
           <img src="https://via.placeholder.com/400" alt="Projet 2" class="w-full h-48 object-cover">
           <div class="p-6">
-            <h3 class="text-2xl font-bold">Projet 2</h3>
-            <p class="mt-2 text-lime-200">Site e-commerce responsive avec Shopify.</p>
-            <a href="#" class="mt-4 inline-block text-lime-500 hover:underline">Voir plus</a>
+            <h3 class="text-2xl font-bold text-purple-400">Projet 2</h3>
+            <p class="mt-2 text-cyan-400">Site e-commerce responsive avec Shopify.</p>
+            <a href="#" class="mt-4 inline-block text-purple-400 hover:underline">Voir plus</a>
           </div>
         </div>
 
-        <div
-          class="bg-gray-900 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-500 fade-in text-lime-400">
+        <div class="project-card shadow-lg overflow-hidden">
           <img src="https://via.placeholder.com/400" alt="Projet 3" class="w-full h-48 object-cover">
           <div class="p-6">
-            <h3 class="text-2xl font-bold">Projet 3</h3>
-            <p class="mt-2 text-lime-200">Blog personnel développé avec WordPress.</p>
-            <a href="#" class="mt-4 inline-block text-lime-500 hover:underline">Voir plus</a>
+            <h3 class="text-2xl font-bold text-purple-400">Projet 3</h3>
+            <p class="mt-2 text-cyan-400">Blog personnel développé avec WordPress.</p>
+            <a href="#" class="mt-4 inline-block text-purple-400 hover:underline">Voir plus</a>
           </div>
         </div>
       </div>
@@ -129,48 +217,18 @@
   </section>
 
   <!-- Section Contact -->
-  <section id="contact" class="bg-gray-900 text-lime-400 py-20 fade-in">
+  <section id="contact" class="bg-gray-900 text-pink-400 py-20">
     <div class="container mx-auto text-center">
       <h2 class="text-3xl font-bold">Contactez-moi</h2>
-      <p class="mt-4 text-lg opacity-80">Vous avez un projet ou une question ? N'hésitez pas à me contacter !</p>
+      <p class="mt-4">Vous avez un projet ou une question ? N'hésitez pas à me contacter !</p>
       <form class="mt-10 max-w-xl mx-auto">
         <div class="mb-4">
-          <input type="text" placeholder="Votre nom"
-            class="w-full p-3 rounded bg-gray-700 text-lime-400 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-shadow">
+          <input type="text" placeholder="Votre nom" class="contact-input w-full p-3 rounded focus:outline-none focus:ring-2">
         </div>
         <div class="mb-4">
-          <input type="email" placeholder="Votre email"
-            class="w-full p-3 rounded bg-gray-700 text-lime-400 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-shadow">
+          <input type="email" placeholder="Votre email" class="contact-input w-full p-3 rounded focus:outline-none focus:ring-2">
         </div>
         <div class="mb-4">
-          <textarea placeholder="Votre message"
-            class="w-full p-3 rounded bg-gray-700 text-lime-400 focus:outline-none focus:ring-2 focus:ring-lime-500 transition-shadow"></textarea>
+          <textarea placeholder="Votre message" class="contact-input w-full p-3 rounded focus:outline-none focus:ring-2"></textarea>
         </div>
-        <button type="submit"
-          class="bg-lime-700 py-3 px-6 rounded-full hover:bg-lime-600 transform hover:scale-105 transition-transform duration-300">Envoyer</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-black text-lime-400 py-6 text-center">
-    <p>&copy; 2024 Louis Le Roux - Tous droits réservés.</p>
-  </footer>
-
-  <!-- Script pour l'animation lors du défilement -->
-  <script>
-    document.addEventListener('scroll', function () {
-      const elements = document.querySelectorAll('.fade-in');
-      elements.forEach(element => {
-        const position = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (position < windowHeight - 100) {
-          element.classList.add('visible');
-        }
-      });
-    });
-  </script>
-
-</body>
-
-</html>
+        <
