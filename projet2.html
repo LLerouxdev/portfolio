@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Escape No Game - Louis Le Roux</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        p {
+            margin: 2rem;
+            font-size: 1.1rem;
+        }
+        .project-image {
+            display: block;
+            margin: 2rem auto;
+            max-width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background-color: #333;
+            color: #ecf0f1;
+            padding: 1rem;
+            margin: 2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin: 2rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Projet Escape No Game</h1>
+    </header>
+    <p>
+        Ce projet explore la transmission de messages via des ondes radio. 
+        Il s'agit d'un exercice de compréhension et de maîtrise des principes de la communication par radiofréquences.
+    </p>
+    <!-- Image du projet -->
+    <img src="C:\Projet_html_portfolio\image_portfolio\Capture_Escape_No_Game.png" alt="Image du projet Escape No Game" class="project-image">
+
+    <!-- Code du projet -->
+    <h2>Code du Projet</h2>
+    <pre>
+import numpy as np                   #Ce module permet d’effectuer des calculs numériques avec Python
+import matplotlib.pyplot as plt      #Ce module permet de créer et personnaliser des graphiques
+import sounddevice as sd             #Ce module permet de jouer un son
+
+
+
+
+Message = str(input('Entrez le message à envoyer : '))
+
+
+
+total_binary=''                         #Création d'une chaîne de caractère vide "total_binary" qui va contenir le message binaire complet
+for i in range(len(Message)):           #Création d'une boucle for qui se répètera jusqu'à atteindre la valeur de la taille du message en partant de 0
+    binary=''                           #Création d'une chaîne de caractère vide "binary" qui va stocker les 7 bits correspondant à chaque lettre du message
+    string_ord = ord(Message[i])        #Renvoie le décimal correspondant à chaque caratère de la chaîne de caractère
+    while string_ord>0:                 #Boucle tant que se répétant tant que la décimale du caractère est supérieure à 0
+        x = string_ord % 2              #Stockage du reste de la division euclidienne de la décimale par 2
+        string_ord = string_ord // 2    #Stockage du résultat de la division euclidienne de la décimale par 2 sans le reste.
+        binary = str(x) + str(binary)   #Stockage de chaques reste correcpondants à un bit (0 ou 1)
+    total_binary += binary              #Stockage et ajout du code binaire (7 bits) correspondant à chacune des lettres du message
+
+print(total_binary)                     #Affichage du message binaire complet
+
+
+
+def xor(a,b):
+    resultat = []                                     #Initialisation du résultat sous forme d'une liste vide
+    for i in range(1,len(b)):                         #Création d'une boucle pour appliquer la fonction XOR (si les bits sont les même, alors XOR vaut 0, sinon XOR vaut 1)
+        if a[i]== b[i]:                               #Création d'un conditionnel if qui va comparer 2 bits et appliquer la fonction XOR
+            resultat.append('0')                      #Ajout de le caractère '0' à la liste resultat
+        else:
+            resultat.append('1')                      #Ajout de le caractère '1' à la liste resultat
+    return ''.join(resultat)                          #On retourne les données de la fonction XOR sous forme d'une chaîne de caractères sans espaces
+
+
+
+def Division_eucl(divident,diviseur):
+    val = len(diviseur)                               #Stockage de la taille du diviseur dans la variable "val"
+    tmp = divident[0 : val]                           #Stockage des val-premières données du divident
+    while val<len(divident):                          #Création boucle while qui va s'executer tant que val est inférieur à la taille du divident
+        if tmp[0]=='1':                               #Création conditionnel if qui va comparer le caractère '1' à la première valeur du divident
+            tmp = xor(diviseur, tmp)+divident[val]    #Stockage du résultat de l'addition de la val-ième valeur du divident et de xor(diviseur,tmp)
+        else:
+            tmp = xor('0'*val, tmp)+divident[val]     #Stockage du résultat de l'addition de la val-ième valeur du divident et de xor('0'*val, tmp)
+        val+=1                                        #Incrémentation de la variable "val"
+    if tmp[0]=='1':                                   #Création d'un conditionnel if qui va comparer le caractère '1' à la première valeur du divident en dehor de la boucle while 
+        tmp = xor(divisor, tmp)                       #Stockage du résultat de xor(divisor,tmp)
+    else:
+        tmp = xor('0'*val, tmp)                       #Stockage du résultat de xor('0'*val, tmp)
+    check = tmp                                       #Stockage du résultat final de tmp dans la variable "check"
+    return check                                      #On retourne la valeur de check
+
+
+
+#Définition de la fonction d'encodage CRC (total_binary + 'N-bits 0', G (la clé/polynom générateur))
+def encodage(data, key):
+    length_key = len(key)                             #Stockage de la taille de la clé dans une variable
+    data_ajout = data + '0'*(length_key-1)            #Ajout des (length_key-1)'0' correspondant au nombre de '0' par rapport à la taille de la clé-1
+    reste = Division_eucl(data_ajout, key)            #Stockage du reste de la division euclidienne des données par la clé
+    data_encode = data + reste                        #Stockage du message binaire à envoyer
+    return data_encode                                #On retourne le message binaire
+
+#Fonction Main
+data = total_binary                                   #Ajout des 0 correspondant à la taille de la clé
+key = '11010'                                         #Initialisation de la clé
+print("Les données à envoyer sont :", data)           #Affichage des données à envoyer
+print("La clé CRC est:", key)                         #Affichage de la clé
+
+data_crc = encodage(data,key)                         #Encodage CRC du message avec la clé
+print("Les données encodées avec la clé key sont :", data_crc) #Affichage du message encodé avec la clé
+
+
+
+
+message_bool = []                          #Initialisation d'une liste vide
+for i in range(0,len(data_crc),1):         #Boucle for allant de 0 à la valeur de la taille du message codé en CRC par pas de 1
+    if data_crc[i]=='1':                   #Conditionnel if qui compare le caractère '1' à la i-ème valeur du message codé en CRC
+        message_bool.append(True)          #Ajout d'un booléen True à la liste "message_bool" si condition vérifiée
+    if data_crc[i]=='0':                   #Conditionnel if qui compare le caractère '0' à la i-ème valeur du message codé 
+        message_bool.append(False)         #Ajout d'un booléen False à la liste "message_bool" si condition vérifiée
+#Codage Manchester du message
+message_code=[]                            #Initialisation d'une liste vide
+for ii in range(0,len(message_bool)):      #Boucle for allant de 0 à la valeur de la taille de "message_bool" par pas de 1
+    if message_bool[ii]==True:             #Conditionnel if qui compare le booléen "True" à la ii-ème donnée de la liste "message_bool"
+        message_code.extend([int(1)])      #Ajout d'un entier 1 dans la liste "message_code" si la condition est vérifiée
+        message_code.extend([int(0)])      #Ajout d'un entier 0 à la suite du 1 dans la liste "message_code" si la condition est vérifiée
+    if message_bool[ii]==False:            #Conditionnel if qui compare le booléen "False" à la ii-ème donnée de la liste "message_bool"
+        message_code.extend([int(0)])      #Ajout d'un entier 0 dans la liste "message_code" si la condition est vérifiée
+        message_code.extend([int(1)])      #Ajout d'un entier 1 à la suite du 0 dans la liste "message_code" si la condition est vérifiée
+print(message_code)                        #Affichage du message codé en Manchester
+
+
+
+#Modulation ASK du message
+M = message_code                           #Stockage du mesage dans une variable "M"
+Fe = 88200                                 #Initialisation de la fréquence d'échantillonnage à 88 200Hz (soit le double de 44 100Hz)
+Fp = 35000                                 #Initialisation de la fréquence de la porteuse à 35 000Hz (Pour que le son sot inaudible)
+baud = 600                                 #Initialisation du débit souhaité sur le canal de transmission à 600bit/s
+Nbits = len(M)                             #Initialisation du nombre de bits initial
+Ns = Fe/baud                               #Initialisation du nombre de symboles par bit (Fréquence d'échantillonnage/débit binaire)
+N = Nbits*Ns                               #Initialisation du nombre de bits total à moduler (Nombre de symbole par bits*Nombre de bits)
+
+M_duplique=np.repeat(M,Ns)                 #On génère le message binaire dupliqué
+
+t = np.arange (0.0,N)/Fe                   #On génère le vecteur temps
+
+Ap=1
+Porteuse = Ap*np.sin(2*np.pi*Fp*t)         #On génère la porteuse P(t)
+
+ASK = Porteuse*M_duplique                  #On réalise la modulation en amplitude (ASK)
+
+#Affichage Message binaire
+plt.figure (figsize = (10,6))
+plt.plot(t,M_duplique,'Black')
+plt.title('Message M(t)')
+plt.xlabel('temps (s)')
+plt.ylabel('Amplitude')
+plt.grid()
+
+#Affichage du signal modulé
+plt.figure (figsize = (10,6))
+plt.plot(t,ASK,'b')
+plt.title('Modulation AM(t)')
+plt.xlabel('temps (s)')
+plt.ylabel('Amplitude')
+plt.grid()
+
+
+
+
+
+#Modulation FSK
+M = message_code                           #Stockage du mesage dans une variable "M"
+Fe = 88200                                 #Initialisation de la fréquence d'échantillonnage à 88 200Hz (soit le double de 44 100Hz)
+Fp = 35000                                 #Initialisation de la fréquence de la porteuse à 35 000Hz (Pour que le son sot inaudible)
+baud = 600                                 #Initialisation du débit souhaité sur le canal de transmission à 600bit/s
+Nbits = len(M)                             #Initialisation du nombre de bits initial
+Ns = Fe/baud                               #Initialisation du nombre de symboles par bit (Fréquence d'échantillonnage/débit binaire)
+N = Nbits*Ns                               #Initialisation du nombre de bits total à moduler (Nombre de symbole par bits*Nombre de bits)
+
+M_duplique = np.repeat(M,Ns)                                                  # On génère le message binaire dupliqué
+
+t = np.arange (0.0,N)/Fe                                                      #On génère le vecteur temps
+
+# Génération des 2 porteuse P1 pour le bit 1 et P2 pour le bit 0
+A1 =  1                                        
+A2 =  1                  
+fp1 =  35000                
+fp2 =  36000 
+P1 =  A1*np.sin(2*np.pi*fp1*t)                                               
+P2 =  A2*np.sin(2*np.pi*fp2*t)
+
+FSK=[P1[i] if M_duplique[i]==1 else P2[i] for i in range(len(M_duplique))]    #Dans une boucle for allant de 0 à la taille du message binaire dupliqué, on applique la valeur de p1[i] à FSK[i] si la i-ème valeur du message binaire dupliqué est égale à 1 sinon on lui applique la valeur de p2[i]
+
+#Affichage du message
+plt.figure (figsize = (10,6))
+plt.plot(t,M_duplique,'Black')
+plt.title('Message M(t)')
+plt.xlabel('temps (s)')
+plt.ylabel('Amplitude')
+plt.grid()
+
+#Affichage du signal modulé
+plt.figure (figsize = (10,6))
+plt.plot(t,FSK,'r')
+plt.title('Modulation FM(t)')
+plt.xlabel('temps (s)')
+plt.ylabel('Amplitude')
+plt.axis([0,0.009,-1,1])
+plt.grid()
+
+
+
+
+sd.play(ASK, Fe)
+
+
+
+
+#Initialisation des données nécessaires à la démodulation ASK
+Fe = 88200
+Fp = 35000
+baud = 600
+N = len(ASK)
+Ns = Fe/baud
+
+t = np.arange (0.0,N)/Fe                                       #Génération du vecteur temps
+
+Porteuse=np.sin(2*np.pi*Fp*t)                                  #Génération de la porteuse
+Produit=ASK*Porteuse
+
+#Intégration
+y=[]                                                           #Initialisation d'une liste vide
+for i in range(0,int(N),int(Ns)):                              #Boucle for allant de 0 à N par pas de NS
+    y.append(np.trapz(Produit[i:i+int(Ns)],t[i:i+int(Ns)]))    #Ajout du résultat de l'intégrale des données du Produit de l'ASK avec la Porteuse en fonction du temps allant de i à i+Ns
+
+#Affichage de l'ASK
+plt.figure (figsize = (10,6))
+plt.plot(t,ASK,'b')
+plt.title('ASK')
+plt.xlabel('temps (s)')
+plt.ylabel('Amplitude')
+plt.grid()
+
+#Affichage des données de y
+print("Les valeurs de y sont :",y)
+
+
+
+
+#Initialisation des données nécessaires à la démodulation FSK
+Fp1 = 35000
+Fp2 = 36000
+S1 = np.sin(2*np.pi*Fp1*t)                           #Génération de la première porteuse S1
+S2 = np.sin(2*np.pi*Fp2*t)                           #Génération de la deuxième porteuse S2
+
+Produit1 = S1*FSK
+Produit2 = S2*FSK
+
+Res1=[]                                              #Initialisation d'une liste vide
+Res2=[]                                              #Initialisation d'une liste vide
+
+i=0                                                  #Initialisation de i à 0
+for i in range(0,int(N),int(Ns)):                    #Boucle for allant de 0 à N par pas de Ns
+    Res1.append(np.trapz(Produit1[i:i+int(Ns)]))     #Ajout des résultat de l'intégrale du Produit(Porteuse1(S1)*FSK) à la liste "Res1" allant de i à i+Ns
+    Res2.append(np.trapz(Produit2[i:i+int(Ns)]))     #Ajout des résultat de l'intégrale du Produit(Porteuse2(S2)*FSK) à la liste "Res2" allant de i à i+Ns
+
+y=[]                                                 #Initialisation d'une liste vide
+for i in range(0,len(Res1)):                         #Boucle for allant de 0 à la taille de "Res1"
+    if Res1[i]>Res2[i]:                              #Conditionnel if qui vérifie si la i-ème valeur de Res1 est supérieure à la i-ème valeur de Res2
+        y.append(1)                                  #Ajout de la valeur 1 à la liste "y" si la condition est vérifiée
+    if Res1[i]<Res2[i]:                              #Conditionnel if qui vérifie si la i-ème valeur de Res1 est inférieure à la i-ème valeur de Res2
+        y.append(0)                                  #Ajout de la valeur 0 à la liste "y" si la condition est vérifiée
+
+#Affichage de FSK
+plt.figure (figsize = (10,6))
+plt.plot(t,FSK,'b')
+plt.title('FSK')
+plt.xlabel('temps (s)')
+plt.ylabel('Amplitude')
+plt.axis([0,0.009,-1,1])
+plt.grid()
+
+#Affichage des valeurs de y
+print("Les valeurs de y sont :",y)
+
+
+
+
+#Décodage Manchester
+message_demodule = np.array(y)>0                                         #Si >0 renvoie True, sinon renvoie False
+
+message_recu_decode=[]                                                   #Initialisation d'une liste vide
+for iii in range(0,len(message_demodule)):                               #Boucle for allant de 0 à la valeur de la taille de "message_demodule"
+    if message_demodule[iii]==True:                                      #Conditionnel if qui vérifie si la iii-ème valeur de "message_demodule" est égale à "True"
+        message_recu_decode.extend([int(1)])                             #Ajout de la valeur 1 à la liste "message_recu_decode" si la condition est vérifiée
+    if message_demodule[iii]==False:                                     #Conditionnel if qui vérifie si la iii-ème valeur de "message_demodule" est égale à "False"
+        message_recu_decode.extend([int(0)])                             #Ajout de la valeur 0 à la liste "message_recu_decode" si la condition est vérifiée
+
+message_recu_bin=[]                                                      #Initialisation d'une liste vide
+for iiii in range(0, len(message_demodule),2):                           #Boucle for allant de 0 à la valeur de la taille de "message_demodule" par pas de 2 afin de revenir à un bit et non 2 bits par état
+    if message_recu_decode[iiii]==1 and message_recu_decode[iiii+1]==0:  #Conditionnel if qui vérifie si la iiii-ème valeur de "message_recu_decode" est égale à 1 et si la (iiii+1)-ème valeur de "message_recu_decode" est égale à 0
+        message_recu_bin.extend([str(1)])                                #Ajout d'un caractère 1 à la liste mesage_recu_bin si la condition est vérifiée
+    if message_recu_decode[iiii]==0 and message_recu_decode[iiii+1]==1:  #Conditionnel if qui vérifie si la iiii-ème valeur de "message_recu_decode" est égale à 0 et si la (iiii+1)-ème valeur de "message_recu_decode" est égale à 1
+        message_recu_bin.extend([str(0)])                                #Ajout d'un caractère 0 à la liste mesage_recu_bin si la condition est vérifiée
+print(message_recu_bin)                                                  #Affichage de la liste de caractères "message_recu_bin" contenant le message initial envoyé par l'agent après avoir été codé en CRC
+
+
+
+
+ #conversion liste en chaine de caractère
+message_réceptionné=''.join(message_recu_bin)
+print(message_réceptionné)
+
+
+
+
+#Définition de la fonction de décodage
+def decodage(data_crc, key):
+    length_key = len(key)                                                #Stockage de la taille de la clé
+    data_ajout = data_crc + '0'*(length_key-1)                           #Ajout des '0' en fonction de la taille de la clé-1
+    reste = Division_eucl(data_ajout, key)                               #Stockage du reste de la division euclidienne du message auquel on ajouté les 0 par la clé
+    return reste                                                         #On retourne la valeur du reste
+
+key = '11010'                                                            #Initialisation de la clé (c'est la même que dans la phase d'émission)
+check = decodage(message_réceptionné, key)                               #Récupération du reste de la division euclidienne du message réceptionné par la clé
+print("Le reste de la division après décodage est ->" +check)            #Affichage du reste de la division après décodage
+temp = "0" * (len(key) - 1)                                              #Récupération du message de base
+if check == temp:                                                        #Conditionnel if qui vérifie si check est égal à temp
+    print("Les données -> "+message_réceptionné +"<- sont bien reçues!") #Affichage d'un message de confirmation de la validité du message si la condition est vérifiée
+else:       
+    print("Erreur de réception")                                         #Affichage d'un message d'erreur si la condition n'est pas vérifiée
+    
+    
+    
+    
+    
+#Définition de la fonction de conversion du binaire en décimale
+def BinaryToDecimal(binary):  
+    #initialisation des variables
+    decimal = 0
+    i = 0
+    n = 0
+    while(binary != 0):                            #Boucle tant que qui s'execute tant que le code binaire est différent de 0
+        dec = binary % 10                          #On récupère le reste de la division euclidienne du code binaire par 10
+        decimal = decimal + dec * pow(2, i)        #On récupère la décimale correspondant au code binaire
+        binary = binary//10                        #On effectue la division euclidienne du code binaire par 10 sans récupérer le reste
+        i += 1                                     #On incrémente i de 1
+    return (decimal)                               #On retourne la valeur décimale du code binaire entré
+
+#Conversion du message binaire en texte via la table ASCII
+Total_texte=''                                     #Initialisation d'une chaîne de caractère vide
+for i in range(0,len(message_réceptionné),7):      #Boucle for allant de 0 à la taille de "message_réceptionné"
+    bin_data=int(message_réceptionné[i:i+7])       #Stockage des 7 bits correspondant à une lettre
+    decimal_data = BinaryToDecimal(bin_data)       #Conversion du code binaire (7 bits) en décimal
+    Total_texte = Total_texte + chr(decimal_data)  #Conversion de la décimale en texte puis ajout du caractère à la liste "Total_teste"
+    
+    
+    
+    
+    
+#Affichage du message
+print(Total_texte)
+
+
+
+
+verification = int(check,2)             #Conversion de "check" binaire en décimal provenant du décodage CRC
+FeA=44100                               #Initialisation de la fréquence d'échantillonnage pour un signal de fréquence comprise dans le spectre de l'audible par l'oreille humaine
+t=np.arange(0,0.2,1/FeA)                #Génération d'un vecteur temps de durée 0.2s (ce temps nous parrait suffisant pour un accusé de réception(bip sonore) mais il reste mdifiable)
+Accusé_réception=np.sin(2*np.pi*5000*t) #Génération d'un signal quelconque de fréquence 5 000Hz
+if verification == 0:                   #Conditionnel if qui vérifie si le message est bien reçu
+    sd.play(Accusé_réception, FeA)      #Émission du message sous forme de signal (Jouer le son) si la condition est vérifiée, sinon pas d'accusé de réception
+    
+    
+    
+    
+    
+    
+
+    </pre>
+
+    <a href="Portfolio.html">Retour au portfolio</a>
+</body>
+</html>
