@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-37fxchfa> <head><meta charset="UTF-8"><meta name="description" property="og:description" content="Ce projet explore la transmission de messages via des ondes radio. Il s'agit d'un exercice de compréhension et de maîtrise des principes de la communication par radiofréquences.
+"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.1.1"><title>Escape No Game</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet"><script>
+	// This code is inlined in the head to make dark mode instant & blocking.
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+
+	if (typeof localStorage !== 'undefined') {
+		// Watch the document element and persist user preference when it changes.
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('theme-dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+	}
+</script><link rel="stylesheet" href="/_astro/about.DZ3Y8Zob.css">
+<style>a[data-astro-cid-balv45lp]{position:relative;display:flex;place-content:center;text-align:center;padding:.56em 2em;gap:.8em;color:var(--accent-text-over);text-decoration:none;line-height:1.1;border-radius:999rem;overflow:hidden;background:var(--gradient-accent-orange);box-shadow:var(--shadow-md);white-space:nowrap}@media (min-width: 20em){a[data-astro-cid-balv45lp]{font-size:var(--text-lg)}}a[data-astro-cid-balv45lp]:after{content:"";position:absolute;inset:0;pointer-events:none;transition:background-color var(--theme-transition);mix-blend-mode:overlay}a[data-astro-cid-balv45lp]:focus:after,a[data-astro-cid-balv45lp]:hover:after{background-color:hsla(var(--gray-999-basis),.3)}@media (min-width: 50em){a[data-astro-cid-balv45lp]{padding:1.125rem 2.5rem;font-size:var(--text-xl)}}aside[data-astro-cid-rcdzuq3a]{display:flex;flex-direction:column;align-items:center;gap:3rem;border-top:1px solid var(--gray-800);border-bottom:1px solid var(--gray-800);padding:5rem 1.5rem;background-color:var(--gray-999_40);box-shadow:var(--shadow-sm)}h2[data-astro-cid-rcdzuq3a]{font-size:var(--text-xl);text-align:center;max-width:15ch}@media (min-width: 50em){aside[data-astro-cid-rcdzuq3a]{padding:7.5rem;flex-direction:row;flex-wrap:wrap;justify-content:space-between}h2[data-astro-cid-rcdzuq3a]{font-size:var(--text-3xl);text-align:left}}
+svg[data-astro-cid-patnjmll]{vertical-align:middle;width:var(--size, 1em);height:var(--size, 1em)}
+.pill[data-astro-cid-2qeywk4b]{display:flex;padding:.5rem 1rem;gap:.5rem;color:var(--accent-text-over);border:1px solid var(--accent-regular);background-color:var(--accent-regular);border-radius:999rem;font-size:var(--text-md);line-height:1.35;white-space:nowrap}
+header[data-astro-cid-qwekciqp]{padding-bottom:2.5rem;border-bottom:1px solid var(--gray-800)}.back-link[data-astro-cid-qwekciqp]{display:none}.details[data-astro-cid-qwekciqp]{display:flex;flex-direction:column;padding:.5rem;gap:1.5rem;justify-content:space-between;align-items:center}.tags[data-astro-cid-qwekciqp]{display:flex;gap:.5rem}.description[data-astro-cid-qwekciqp]{font-size:var(--text-lg);max-width:54ch}.content[data-astro-cid-qwekciqp]{max-width:65ch;margin-inline:auto}.content[data-astro-cid-qwekciqp]>*+*{margin-top:1rem}.content[data-astro-cid-qwekciqp] h1,.content[data-astro-cid-qwekciqp] h2,.content[data-astro-cid-qwekciqp] h3,.content[data-astro-cid-qwekciqp] h4,.content[data-astro-cid-qwekciqp] h5{margin:1.5rem 0}.content[data-astro-cid-qwekciqp] img{border-radius:1.5rem;box-shadow:var(--shadow-sm);background:var(--gradient-subtle);border:1px solid var(--gray-800)}.content[data-astro-cid-qwekciqp] blockquote{font-size:var(--text-lg);font-family:var(--font-brand);font-weight:600;line-height:1.1;padding-inline-start:1.5rem;border-inline-start:.25rem solid var(--accent-dark);color:var(--gray-0)}.back-link[data-astro-cid-qwekciqp],.content[data-astro-cid-qwekciqp] a{text-decoration:1px solid underline transparent;text-underline-offset:.25em;transition:text-decoration-color var(--theme-transition)}.back-link[data-astro-cid-qwekciqp]:hover,.back-link[data-astro-cid-qwekciqp]:focus,.content[data-astro-cid-qwekciqp] a:hover,.content[data-astro-cid-qwekciqp] a:focus{text-decoration-color:currentColor}@media (min-width: 50em){.back-link[data-astro-cid-qwekciqp]{display:block;align-self:flex-start}.details[data-astro-cid-qwekciqp]{flex-direction:row;gap:2.5rem}.content[data-astro-cid-qwekciqp] blockquote{font-size:var(--text-2xl)}}
+[data-astro-image]{width:100%;height:auto;object-fit:var(--fit);object-position:var(--pos);aspect-ratio:var(--w) / var(--h)}[data-astro-image=responsive]{max-width:calc(var(--w) * 1px);max-height:calc(var(--h) * 1px)}[data-astro-image=fixed]{width:calc(var(--w) * 1px);height:calc(var(--h) * 1px)}
+</style></head> <body data-astro-cid-37fxchfa> <div class="stack backgrounds" data-astro-cid-37fxchfa> <nav data-astro-cid-dmqpwcec> <div class="menu-header" data-astro-cid-dmqpwcec> <a href="/" class="site-title" data-astro-cid-dmqpwcec> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="url(#icon-gradient-2s72a6126)" fill="url(#icon-gradient-2s72a6126)" style="--size:1.6em" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="m80 96 40 32-40 32m56 0h40"/><rect width="192" height="160" x="32" y="48" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16.97" rx="8.5"/></g> <linearGradient id="icon-gradient-2s72a6126" x1="23" x2="235" y1="43" y2="202" gradientUnits="userSpaceOnUse" data-astro-cid-patnjmll> <stop stop-color="var(--gradient-stop-1)" data-astro-cid-patnjmll></stop> <stop offset=".5" stop-color="var(--gradient-stop-2)" data-astro-cid-patnjmll></stop> <stop offset="1" stop-color="var(--gradient-stop-3)" data-astro-cid-patnjmll></stop> </linearGradient> </svg> 
+Louis Le Roux
+</a> <menu-button data-astro-cid-dmqpwcec="true"> <template data-astro-cid-dmqpwcec> <button class="menu-button" aria-expanded="false" data-astro-cid-dmqpwcec> <span class="sr-only" data-astro-cid-dmqpwcec>Menu</span> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M40 128h176M40 64h176M40 192h176"/></g>  </svg>  </button> </template> </menu-button> </div> <noscript> <ul class="nav-items" data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec> <a class="link" href="/" data-astro-cid-dmqpwcec> Menu </a> </li><li data-astro-cid-dmqpwcec> <a aria-current="page" class="link" href="/work/" data-astro-cid-dmqpwcec> Projets </a> </li><li data-astro-cid-dmqpwcec> <a class="link" href="/about/" data-astro-cid-dmqpwcec> À propos </a> </li> </ul> </noscript> <noscript> <div class="menu-footer" data-astro-cid-dmqpwcec> <div class="socials" data-astro-cid-dmqpwcec> <a href="https://www.linkedin.com/in/louis-le-roux-508101325/" class="social" data-astro-cid-dmqpwcec> <span class="sr-only" data-astro-cid-dmqpwcec>Linkedin</span> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="184" height="184" x="36" y="36" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" rx="8"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M120 112v64m-32-64v64m32-36a28 28 0 0 1 56 0v36"/><circle stroke="none" cx="88" cy="80" r="12"/></g>  </svg>  </a> </div> </div> </noscript> <div id="menu-content" hidden data-astro-cid-dmqpwcec> <ul class="nav-items" data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec> <a class="link" href="/" data-astro-cid-dmqpwcec> Menu </a> </li><li data-astro-cid-dmqpwcec> <a aria-current="page" class="link" href="/work/" data-astro-cid-dmqpwcec> Projets </a> </li><li data-astro-cid-dmqpwcec> <a class="link" href="/about/" data-astro-cid-dmqpwcec> À propos </a> </li> </ul> <div class="menu-footer" data-astro-cid-dmqpwcec> <div class="socials" data-astro-cid-dmqpwcec> <a href="https://www.linkedin.com/in/louis-le-roux-508101325/" class="social" data-astro-cid-dmqpwcec> <span class="sr-only" data-astro-cid-dmqpwcec>Linkedin</span> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><rect width="184" height="184" x="36" y="36" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" rx="8"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M120 112v64m-32-64v64m32-36a28 28 0 0 1 56 0v36"/><circle stroke="none" cx="88" cy="80" r="12"/></g>  </svg>  </a> </div> <div class="theme-toggle" data-astro-cid-dmqpwcec> <theme-toggle data-astro-cid-x3pjskd3="true"> <button data-astro-cid-x3pjskd3> <span class="sr-only" data-astro-cid-x3pjskd3>Dark theme</span> <span class="icon light" data-astro-cid-x3pjskd3><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><circle cx="128" cy="128" r="60" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M128 36V16M63 63 49 49m-13 79H16m47 65-14 14m79 13v20m65-47 14 14m13-79h20m-47-65 14-14"/></g>  </svg> </span> <span class="icon dark" data-astro-cid-x3pjskd3><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 112V64m24 24h-48m-24-64v32m16-16h-32m65 113A92 92 0 0 1 103 39h0a92 92 0 1 0 114 114Z"/></g>  </svg> </span> </button> </theme-toggle>  <script type="module">class n extends HTMLElement{constructor(){super();const e=this.querySelector("button"),t=s=>{document.documentElement.classList[s?"add":"remove"]("theme-dark"),e.setAttribute("aria-pressed",String(s))};e.addEventListener("click",()=>t(!this.isDark())),t(this.isDark())}isDark(){return document.documentElement.classList.contains("theme-dark")}}customElements.define("theme-toggle",n);</script> </div> </div> </div> </nav> <script type="module">class i extends HTMLElement{constructor(){super(),this.appendChild(this.querySelector("template").content.cloneNode(!0));const n=this.querySelector("button"),t=document.getElementById("menu-content");t.hidden=!0,t.classList.add("menu-content");const d=e=>{n.setAttribute("aria-expanded",e?"true":"false"),t.hidden=!e};n.addEventListener("click",()=>d(t.hidden));const s=e=>{d(e.matches),n.hidden=e.matches},c=window.matchMedia("(min-width: 50em)");s(c),c.addEventListener("change",s)}}customElements.define("menu-button",i);</script>   <div class="stack gap-20" data-astro-cid-qwekciqp> <div class="stack gap-15" data-astro-cid-qwekciqp> <header data-astro-cid-qwekciqp> <div class="wrapper stack gap-2" data-astro-cid-qwekciqp> <a class="back-link" href="/work/" data-astro-cid-qwekciqp><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 128H40m72-72-72 72 72 72"/></g>  </svg>  Projets</a> <div class="hero stack gap-4 start" data-astro-cid-bbe6dxrz> <div class="stack gap-2" data-astro-cid-bbe6dxrz> <h1 class="title" data-astro-cid-bbe6dxrz>Escape No Game</h1>  </div>  <div class="details" data-astro-cid-qwekciqp> <div class="tags" data-astro-cid-qwekciqp> <div class="pill" data-astro-cid-2qeywk4b>Python</div> <div class="pill" data-astro-cid-2qeywk4b>Cryptage</div> <div class="pill" data-astro-cid-2qeywk4b>Radiofréquences</div>  </div> <p class="description" data-astro-cid-qwekciqp>Ce projet explore la transmission de messages via des ondes radio. Il s&#39;agit d&#39;un exercice de compréhension et de maîtrise des principes de la communication par radiofréquences.
+</p> </div>  </div>  </div> </header> <main class="wrapper" data-astro-cid-qwekciqp> <div class="stack gap-10 content" data-astro-cid-qwekciqp> <img src="/assets/stock-2.jpg" alt="A bright pink sheet of paper used to wrap flowers curves in front of rich blue background" data-astro-cid-qwekciqp> <div class="content" data-astro-cid-qwekciqp> <h1 id="code-du-projet">Code du Projet :</h1>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>import numpy as np                   #Ce module permet d’effectuer des calculs numériques avec Python</span></span>
+<span class="line"><span>import matplotlib.pyplot as plt      #Ce module permet de créer et personnaliser des graphiques</span></span>
+<span class="line"><span>import sounddevice as sd             #Ce module permet de jouer un son</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Message = str(input('Entrez le message à envoyer : '))</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>total_binary=''                         #Création d'une chaîne de caractère vide "total_binary" qui va contenir le message binaire complet</span></span>
+<span class="line"><span>for i in range(len(Message)):           #Création d'une boucle for qui se répètera jusqu'à atteindre la valeur de la taille du message en partant de 0</span></span>
+<span class="line"><span>    binary=''                           #Création d'une chaîne de caractère vide "binary" qui va stocker les 7 bits correspondant à chaque lettre du message</span></span>
+<span class="line"><span>    string_ord = ord(Message[i])        #Renvoie le décimal correspondant à chaque caratère de la chaîne de caractère</span></span>
+<span class="line"><span>    while string_ord>0:                 #Boucle tant que se répétant tant que la décimale du caractère est supérieure à 0</span></span>
+<span class="line"><span>        x = string_ord % 2              #Stockage du reste de la division euclidienne de la décimale par 2</span></span>
+<span class="line"><span>        string_ord = string_ord // 2    #Stockage du résultat de la division euclidienne de la décimale par 2 sans le reste.</span></span>
+<span class="line"><span>        binary = str(x) + str(binary)   #Stockage de chaques reste correcpondants à un bit (0 ou 1)</span></span>
+<span class="line"><span>    total_binary += binary              #Stockage et ajout du code binaire (7 bits) correspondant à chacune des lettres du message</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>print(total_binary)                     #Affichage du message binaire complet</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def xor(a,b):</span></span>
+<span class="line"><span>    resultat = []                                     #Initialisation du résultat sous forme d'une liste vide</span></span>
+<span class="line"><span>    for i in range(1,len(b)):                         #Création d'une boucle pour appliquer la fonction XOR (si les bits sont les même, alors XOR vaut 0, sinon XOR vaut 1)</span></span>
+<span class="line"><span>        if a[i]== b[i]:                               #Création d'un conditionnel if qui va comparer 2 bits et appliquer la fonction XOR</span></span>
+<span class="line"><span>            resultat.append('0')                      #Ajout de le caractère '0' à la liste resultat</span></span>
+<span class="line"><span>        else:</span></span>
+<span class="line"><span>            resultat.append('1')                      #Ajout de le caractère '1' à la liste resultat</span></span>
+<span class="line"><span>    return ''.join(resultat)                          #On retourne les données de la fonction XOR sous forme d'une chaîne de caractères sans espaces</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def Division_eucl(divident,diviseur):</span></span>
+<span class="line"><span>    val = len(diviseur)                               #Stockage de la taille du diviseur dans la variable "val"</span></span>
+<span class="line"><span>    tmp = divident[0 : val]                           #Stockage des val-premières données du divident</span></span>
+<span class="line"><span>    while valRes2[i]:                              #Conditionnel if qui vérifie si la i-ème valeur de Res1 est supérieure à la i-ème valeur de Res2</span></span>
+<span class="line"><span>        y.append(1)                                  #Ajout de la valeur 1 à la liste "y" si la condition est vérifiée</span></span>
+<span class="line"><span>    if Res1[i]0                                         #Si >0 renvoie True, sinon renvoie False</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>message_recu_decode=[]                                                   #Initialisation d'une liste vide</span></span>
+<span class="line"><span>for iii in range(0,len(message_demodule)):                               #Boucle for allant de 0 à la valeur de la taille de "message_demodule"</span></span>
+<span class="line"><span>    if message_demodule[iii]==True:                                      #Conditionnel if qui vérifie si la iii-ème valeur de "message_demodule" est égale à "True"</span></span>
+<span class="line"><span>        message_recu_decode.extend([int(1)])                             #Ajout de la valeur 1 à la liste "message_recu_decode" si la condition est vérifiée</span></span>
+<span class="line"><span>    if message_demodule[iii]==False:                                     #Conditionnel if qui vérifie si la iii-ème valeur de "message_demodule" est égale à "False"</span></span>
+<span class="line"><span>        message_recu_decode.extend([int(0)])                             #Ajout de la valeur 0 à la liste "message_recu_decode" si la condition est vérifiée</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>message_recu_bin=[]                                                      #Initialisation d'une liste vide</span></span>
+<span class="line"><span>for iiii in range(0, len(message_demodule),2):                           #Boucle for allant de 0 à la valeur de la taille de "message_demodule" par pas de 2 afin de revenir à un bit et non 2 bits par état</span></span>
+<span class="line"><span>    if message_recu_decode[iiii]==1 and message_recu_decode[iiii+1]==0:  #Conditionnel if qui vérifie si la iiii-ème valeur de "message_recu_decode" est égale à 1 et si la (iiii+1)-ème valeur de "message_recu_decode" est égale à 0</span></span>
+<span class="line"><span>        message_recu_bin.extend([str(1)])                                #Ajout d'un caractère 1 à la liste mesage_recu_bin si la condition est vérifiée</span></span>
+<span class="line"><span>    if message_recu_decode[iiii]==0 and message_recu_decode[iiii+1]==1:  #Conditionnel if qui vérifie si la iiii-ème valeur de "message_recu_decode" est égale à 0 et si la (iiii+1)-ème valeur de "message_recu_decode" est égale à 1</span></span>
+<span class="line"><span>        message_recu_bin.extend([str(0)])                                #Ajout d'un caractère 0 à la liste mesage_recu_bin si la condition est vérifiée</span></span>
+<span class="line"><span>print(message_recu_bin)                                                  #Affichage de la liste de caractères "message_recu_bin" contenant le message initial envoyé par l'agent après avoir été codé en CRC</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span> #conversion liste en chaine de caractère</span></span>
+<span class="line"><span>message_réceptionné=''.join(message_recu_bin)</span></span>
+<span class="line"><span>print(message_réceptionné)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#Définition de la fonction de décodage</span></span>
+<span class="line"><span>def decodage(data_crc, key):</span></span>
+<span class="line"><span>    length_key = len(key)                                                #Stockage de la taille de la clé</span></span>
+<span class="line"><span>    data_ajout = data_crc + '0'*(length_key-1)                           #Ajout des '0' en fonction de la taille de la clé-1</span></span>
+<span class="line"><span>    reste = Division_eucl(data_ajout, key)                               #Stockage du reste de la division euclidienne du message auquel on ajouté les 0 par la clé</span></span>
+<span class="line"><span>    return reste                                                         #On retourne la valeur du reste</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>key = '11010'                                                            #Initialisation de la clé (c'est la même que dans la phase d'émission)</span></span>
+<span class="line"><span>check = decodage(message_réceptionné, key)                               #Récupération du reste de la division euclidienne du message réceptionné par la clé</span></span>
+<span class="line"><span>print("Le reste de la division après décodage est ->" +check)            #Affichage du reste de la division après décodage</span></span>
+<span class="line"><span>temp = "0" * (len(key) - 1)                                              #Récupération du message de base</span></span>
+<span class="line"><span>if check == temp:                                                        #Conditionnel if qui vérifie si check est égal à temp</span></span>
+<span class="line"><span>    print("Les données -> "+message_réceptionné +"&#x3C;- sont bien reçues!") #Affichage d'un message de confirmation de la validité du message si la condition est vérifiée</span></span>
+<span class="line"><span>else:       </span></span>
+<span class="line"><span>    print("Erreur de réception")                                         #Affichage d'un message d'erreur si la condition n'est pas vérifiée</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>#Définition de la fonction de conversion du binaire en décimale</span></span>
+<span class="line"><span>def BinaryToDecimal(binary):  </span></span>
+<span class="line"><span>    #initialisation des variables</span></span>
+<span class="line"><span>    decimal = 0</span></span>
+<span class="line"><span>    i = 0</span></span>
+<span class="line"><span>    n = 0</span></span>
+<span class="line"><span>    while(binary != 0):                            #Boucle tant que qui s'execute tant que le code binaire est différent de 0</span></span>
+<span class="line"><span>        dec = binary % 10                          #On récupère le reste de la division euclidienne du code binaire par 10</span></span>
+<span class="line"><span>        decimal = decimal + dec * pow(2, i)        #On récupère la décimale correspondant au code binaire</span></span>
+<span class="line"><span>        binary = binary//10                        #On effectue la division euclidienne du code binaire par 10 sans récupérer le reste</span></span>
+<span class="line"><span>        i += 1                                     #On incrémente i de 1</span></span>
+<span class="line"><span>    return (decimal)                               #On retourne la valeur décimale du code binaire entré</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#Conversion du message binaire en texte via la table ASCII</span></span>
+<span class="line"><span>Total_texte=''                                     #Initialisation d'une chaîne de caractère vide</span></span>
+<span class="line"><span>for i in range(0,len(message_réceptionné),7):      #Boucle for allant de 0 à la taille de "message_réceptionné"</span></span>
+<span class="line"><span>    bin_data=int(message_réceptionné[i:i+7])       #Stockage des 7 bits correspondant à une lettre</span></span>
+<span class="line"><span>    decimal_data = BinaryToDecimal(bin_data)       #Conversion du code binaire (7 bits) en décimal</span></span>
+<span class="line"><span>    Total_texte = Total_texte + chr(decimal_data)  #Conversion de la décimale en texte puis ajout du caractère à la liste "Total_teste"</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>#Affichage du message</span></span>
+<span class="line"><span>print(Total_texte)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>verification = int(check,2)             #Conversion de "check" binaire en décimal provenant du décodage CRC</span></span>
+<span class="line"><span>FeA=44100                               #Initialisation de la fréquence d'échantillonnage pour un signal de fréquence comprise dans le spectre de l'audible par l'oreille humaine</span></span>
+<span class="line"><span>t=np.arange(0,0.2,1/FeA)                #Génération d'un vecteur temps de durée 0.2s (ce temps nous parrait suffisant pour un accusé de réception(bip sonore) mais il reste mdifiable)</span></span>
+<span class="line"><span>Accusé_réception=np.sin(2*np.pi*5000*t) #Génération d'un signal quelconque de fréquence 5 000Hz</span></span>
+<span class="line"><span>if verification == 0:                   #Conditionnel if qui vérifie si le message est bien reçu</span></span>
+<span class="line"><span>    sd.play(Accusé_réception, FeA)      #Émission du message sous forme de signal (Jouer le son) si la condition est vérifiée, sinon pas d'accusé de réception</span></span></code></pre> </div> </div> </main> </div> <aside data-astro-cid-rcdzuq3a> <h2 data-astro-cid-rcdzuq3a>Prêt pour une collaboration ?</h2> <a href="mailto:louis.leroux@viacesi.fr?subject=Demande%20de%20contact&#38;body=Bonjour%20Louis%2C" data-astro-cid-balv45lp>
+contactez moi
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true" stroke="currentcolor" fill="currentcolor" style="--size:1.2em" class="astro-patnjmll" data-astro-cid-patnjmll> <g data-astro-cid-patnjmll><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M210.3 35.9 23.9 88.4a8 8 0 0 0-1.2 15l85.6 40.5a7.8 7.8 0 0 1 3.8 3.8l40.5 85.6a8 8 0 0 0 15-1.2l52.5-186.4a7.9 7.9 0 0 0-9.8-9.8Zm-99.4 109.2 45.2-45.2"/></g>  </svg>  </a>  </aside>  </div>  <footer data-astro-cid-sz7xmlte> <div class="group" data-astro-cid-sz7xmlte>  <p data-astro-cid-sz7xmlte>&copy; 2025 Louis Le Roux</p> </div> <p class="socials" data-astro-cid-sz7xmlte> <a href="https://www.linkedin.com/in/louis-le-roux-508101325/" data-astro-cid-sz7xmlte> Linkedin</a> </p> </footer>  </div> <script type="module">addEventListener("load",()=>document.documentElement.classList.add("loaded"));</script>  </body> </html> 
